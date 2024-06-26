@@ -1,0 +1,16 @@
+version: '3'
+services:
+  backend:
+    container_name: ringier-zadanie-api-instance
+    build:
+      context: ../src/api
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - '5000:5000'
+  frontend:
+    container_name: ringier-zadanie-app-instance
+    build:
+      context: ../src/app
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - '3000:3000'
