@@ -7,6 +7,9 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - '5000:5000'
+    depends_on:
+      - db
+
   frontend:
     container_name: ringier-zadanie-app-instance
     build:
@@ -14,3 +17,16 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - '3000:3000'
+
+  db:
+    container_name: ringier-zadanie-db-instance
+    image: mariadb
+    env_file:
+      - .env
+    volumes:
+      - data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+
+volumes:
+  data:
