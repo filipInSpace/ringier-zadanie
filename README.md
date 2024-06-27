@@ -33,7 +33,7 @@ DB_PASSWORD=YOUR_DATABASE_PASSWORD
     ```docker run --name mariadb -e MYSQL_ROOT_PASSWORD=YOUR_DATABASE_PASSWORD -e MYSQL_DATABASE=YOUR_DATABASE_NAME -e MYSQL_USER=YOUR_DATABASE_USER -p 3306:3306 -d mariadb
     ```
 2. Connect to the MariaDB container using the following command:
-    ```docker exec -it mariadb mariadb -uroot -p'YOUR_DATABASE_PASSWORD'```
+    `docker exec -it mariadb mariadb -uroot -p'YOUR_DATABASE_PASSWORD'`
 3. Inside the MariaDB shell, create the myTable with the specified columns:
     ```CREATE TABLE myTable (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,10 +59,19 @@ Run `npm start` to start the frontend server. The application should now be runn
 
 ### Docker Compose
 
-1. run ```docker-compose up```.
-2. Connect to the MariaDB container using the following command:
+1. Set Environment Variables in the exposed `.env` file inside the `/docker` folder: 
+```MYSQL_ROOT_PASSWORD: YOUR_MYSQL_PASSWORD
+MYSQL_DATABASE: YOUR_MYSQL_DATABASE
+MYSQL_USER: YOUR_MYSQL_USER
+```
+2. Create a `.env` file in the `src/api` directory with the following placeholders:
+```ER_API_KEY=YOUR_EXCHANGE_RATE_API_KEY
+```
+
+3. run ```docker-compose up```.
+4. Connect to the MariaDB container using the following command:
     ```docker exec -it YOUR_CONTAINER_NAME mariadb -uroot -p'YOUR_DATABASE_PASSWORD'```
-3. Inside the MariaDB shell, create the myTable with the specified columns:
+5. Inside the MariaDB shell, create the myTable with the specified columns:
     ```CREATE TABLE myTable (
     id INT AUTO_INCREMENT PRIMARY KEY,
     currency VARCHAR(255) NOT NULL,
@@ -70,6 +79,7 @@ Run `npm start` to start the frontend server. The application should now be runn
     rates JSON
     );
     ```
+6. Restart the Docker Container.
 
 
 ### Notes
